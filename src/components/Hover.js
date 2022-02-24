@@ -1,19 +1,14 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { Card } from "../Elements";
 import black from "../black.png";
+import { useHover } from '../hooks';
 
 const Hover = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, bind] = useHover(false);
   console.log('isHovered', isHovered);
-  const bind = useMemo(() => {
-    return {
-      onMouseOver: () => setIsHovered(true),
-      onMouseLeave: () => setIsHovered(false),
-    }
-  }, [])
   return (
     <div>
-      <Card {...bind} style={{ background: "var(--black)" }}>
+      <Card {...bind} style={{ background: isHovered ? "var(--purp)" : "var(--black)" }}>
         <h3>Some card</h3>
         <img src={black} />
       </Card>      
